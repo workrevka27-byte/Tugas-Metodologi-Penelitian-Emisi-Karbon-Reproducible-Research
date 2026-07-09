@@ -1,147 +1,293 @@
-TUGAS METODOLOGI (LATIHAN DENGAN R STUDIO)
+# TUGAS METODOLOGI PENELITIAN (LATIHAN DENGAN R STUDIO)
 
-🌧️ Emisi Karbon Reproducible Research
-Analisis Emisi Karbon kendaraan menggunakan R Programming sebagai implementasi konsep Reproducible Research pada mata kuliah Metodologi Penelitian.
+# 🚗 Carbon Emission Reproducible Research
 
-📖 Deskripsi
-Repository ini berisi tahapan analisis data curah hujan harian menjadi curah hujan maksimum tahunan (Rmax), kemudian dilakukan analisis statistik deskriptif, analisis distribusi probabilitas, pengujian kesesuaian distribusi, hingga perhitungan curah hujan rencana.
+Analisis **Emisi Karbon Kendaraan Bermotor** menggunakan metode **Vehicle Kilometers Travelled (VKT)** dan **R Programming** sebagai implementasi konsep **Reproducible Research** pada mata kuliah **Metodologi Penelitian**.
 
-Seluruh analisis dilakukan menggunakan bahasa pemrograman R sehingga setiap proses dapat direproduksi kembali hanya dengan menjalankan script yang tersedia.
+---
 
-🎯 Tujuan
-Mengolah data curah hujan harian.
-Membentuk data curah hujan maksimum tahunan (Rmax).
-Menghitung statistik deskriptif.
-Menentukan CDF empiris.
-Membandingkan beberapa distribusi probabilitas.
-Menentukan distribusi terbaik.
-Melakukan uji Chi-Square.
-Melakukan uji Kolmogorov-Smirnov.
-Menghitung curah hujan rencana untuk berbagai periode ulang.
-📁 Struktur Repository
-Rainfall-Reproducible-Research
+# 📖 Deskripsi
+
+Repository ini berisi tahapan analisis data volume kendaraan untuk menghitung **emisi karbon kendaraan bermotor** menggunakan pendekatan **Vehicle Kilometers Travelled (VKT)**.
+
+Tahapan analisis meliputi proses **import data**, **data preparation**, **perhitungan VKT**, **perhitungan emisi karbon**, **analisis statistik**, **visualisasi hasil**, hingga **dokumentasi lingkungan komputasi** sehingga seluruh proses penelitian dapat direproduksi kembali.
+
+Seluruh analisis dilakukan menggunakan bahasa pemrograman **R**, sehingga setiap proses dapat dijalankan kembali hanya dengan menggunakan data mentah dan script yang tersedia.
+
+---
+
+# 🎯 Tujuan
+
+- Mengimpor data volume kendaraan.
+- Memeriksa kualitas data.
+- Membersihkan data (Data Cleaning).
+- Menghitung **Vehicle Kilometers Travelled (VKT)**.
+- Menghitung emisi karbon kendaraan.
+- Melakukan analisis statistik deskriptif.
+- Menganalisis emisi berdasarkan ruas jalan.
+- Menganalisis emisi berdasarkan jenis kendaraan.
+- Membuat visualisasi hasil analisis.
+- Menerapkan konsep **Reproducible Research** menggunakan R.
+
+---
+
+# 📁 Struktur Repository
+
+```text
+Carbon-Emission-Reproducible-Research
 │
 ├── data/
-│   └── Curah Hujan.csv
+│   └── data_emisi.csv
 │
-├── script/
-│   ├── 01_import_dan_rmax.R
-│   ├── 02_statistik_deskriptif.R
-│   ├── 03_cdf_empiris.R
-│   ├── 04_distribusi_normal.R
-│   ├── 05_perbandingan_distribusi.R
-│   ├── 06_uji_chisquare.R
-│   ├── 07_uji_smirnov.R
-│   ├── 08_curah_hujan_rencana.R
-│   └── 09_plot_distribusi.R
+├── notebook/
+│   ├── 01_import_data.ipynb
+│   ├── 02_perhitungan_emisi.ipynb
+│   ├── 03_analisis_visualisasi.ipynb
+│   └── 04_export_output.ipynb
 │
 ├── output/
+│   ├── data_clean.csv
+│   ├── hasil_emisi.csv
+│   ├── ringkasan_ruas.csv
+│   ├── ringkasan_kendaraan.csv
+│   ├── ringkasan_penelitian.xlsx
+│   ├── grafik_emisi_ruas.png
+│   ├── grafik_emisi_kendaraan.png
+│   ├── grafik_kontribusi_ruas.png
+│   ├── package_version.csv
+│   ├── sessionInfo_01.txt
+│   ├── sessionInfo_02.txt
+│   ├── sessionInfo_03.txt
+│   └── sessionInfo_04.txt
 │
 ├── report/
 │
 └── README.md
-💻 Software
-R
-RStudio
-📦 Packages
+```
+
+---
+
+# 💻 Software
+
+Project ini dibuat menggunakan:
+
+- R
+- RStudio
+- Jupyter Notebook (IRkernel)
+
+---
+
+# 📦 Packages
+
 Project ini menggunakan package berikut:
 
-readr
-dplyr
-lubridate
-ggplot2
-e1071
-fitdistrplus
-writexl
+- readr
+- dplyr
+- ggplot2
+- writexl
+
 Install package dengan:
 
+```r
 install.packages(c(
-"readr",
-"dplyr",
-"lubridate",
-"ggplot2",
-"e1071",
-"fitdistrplus",
-"writexl"
+  "readr",
+  "dplyr",
+  "ggplot2",
+  "writexl"
 ))
-▶️ Alur Analisis
-Jalankan script secara berurutan.
+```
 
-No	Script	Fungsi
-01	Import Data dan Rmax	Mengimpor data serta membentuk curah hujan maksimum tahunan
-02	Statistik Deskriptif	Menghitung statistik dasar data Rmax
-03	CDF Empiris	Menghitung peluang empiris menggunakan plotting position
-04	Distribusi Normal	Menghitung probabilitas teoritis distribusi Normal
-05	Perbandingan Distribusi	Membandingkan Normal, Log Normal, Gumbel, dan Weibull
-06	Uji Chi-Square	Menguji kesesuaian distribusi terbaik
-07	Uji Kolmogorov-Smirnov	Validasi distribusi terbaik
-08	Curah Hujan Rencana	Menghitung hujan rencana berbagai periode ulang
-09	Visualisasi	Membuat grafik distribusi
-📊 Hasil Analisis
-Analisis menunjukkan bahwa beberapa distribusi probabilitas dibandingkan menggunakan nilai SSE dan koefisien determinasi (R²).
+---
 
-Distribusi terbaik kemudian diuji menggunakan:
+# ▶️ Alur Analisis
 
-Chi-Square Test
-Kolmogorov-Smirnov Test
-Distribusi yang memenuhi kedua pengujian digunakan untuk menghitung curah hujan rencana.
+Jalankan notebook secara berurutan.
 
-📈 Output
-Program menghasilkan beberapa file output, antara lain:
+| No | Notebook | Fungsi |
+|:--:|----------|--------|
+| 01 | Import Data | Mengimpor data, memeriksa kualitas data, dan menghasilkan dataset bersih |
+| 02 | Perhitungan Emisi | Menghitung Vehicle Kilometers Travelled (VKT) dan emisi karbon kendaraan |
+| 03 | Analisis Statistik & Visualisasi | Melakukan analisis statistik deskriptif dan visualisasi hasil |
+| 04 | Export Output | Mengekspor hasil penelitian dan mendokumentasikan lingkungan komputasi |
 
-rmax_tahunan.csv
-statistik_deskriptif.csv
-cdf_empiris.csv
-hasil_r2.csv
-hasil_chisquare.csv
-hasil_smirnov.csv
-curah_hujan_rencana.csv
-plot_distribusi.png
-🔄 Workflow
-Data Curah Hujan Harian
-            │
-            ▼
-Import Data
-            │
-            ▼
-Curah Hujan Maksimum Tahunan (Rmax)
-            │
-            ▼
-Statistik Deskriptif
-            │
-            ▼
-CDF Empiris
-            │
-            ▼
-Analisis Distribusi
-(Normal, Log Normal,
- Gumbel, Weibull)
-            │
-            ▼
-Perbandingan Distribusi
-            │
-            ▼
-Distribusi Terbaik
-            │
-      ┌─────┴─────┐
-      ▼           ▼
-Chi-Square      Kolmogorov
-      │           │
-      └─────┬─────┘
-            ▼
-Curah Hujan Rencana
-            │
-            ▼
-Visualisasi
-👨‍💻 Penulis
-Fayyad Faizatama
+---
 
-Program Studi Teknik Sipil
+# 🧮 Metode Perhitungan
 
-Universitas ...
+## Vehicle Kilometers Travelled (VKT)
 
-📚 Mata Kuliah
-Metodologi Penelitian
+\[
+VKT = Volume \times Panjang\ Jalan
+\]
 
-📄 Lisensi
-Repository ini dibuat untuk keperluan akademik sebagai tugas mata kuliah Metodologi Penelitian.
+dimana:
+
+- **Volume** = jumlah kendaraan (kendaraan/jam)
+- **Panjang Jalan** = panjang ruas jalan (km)
+
+---
+
+## Emisi Karbon
+
+\[
+Emisi = VKT \times Faktor\ Emisi
+\]
+
+dimana:
+
+- **VKT** = Vehicle Kilometers Travelled (kendaraan-km)
+- **Faktor Emisi** = faktor emisi kendaraan (gram CO₂/kendaraan-km)
+
+---
+
+## Konversi Satuan
+
+Gram → Kilogram
+
+\[
+Kilogram = \frac{Gram}{1000}
+\]
+
+Kilogram → Ton
+
+\[
+Ton = \frac{Kilogram}{1000}
+\]
+
+---
+
+# 📊 Hasil Analisis
+
+Analisis menghasilkan informasi mengenai:
+
+- Total Vehicle Kilometers Travelled (VKT).
+- Total emisi karbon kendaraan.
+- Emisi karbon pada setiap ruas jalan.
+- Emisi karbon berdasarkan jenis kendaraan.
+- Persentase kontribusi emisi tiap ruas jalan.
+- Grafik distribusi emisi karbon.
+
+---
+
+# 📈 Output
+
+Program menghasilkan beberapa file output, yaitu:
+
+- `data_clean.csv`
+- `hasil_emisi.csv`
+- `ringkasan_ruas.csv`
+- `ringkasan_kendaraan.csv`
+- `ringkasan_penelitian.xlsx`
+- `grafik_emisi_ruas.png`
+- `grafik_emisi_kendaraan.png`
+- `grafik_kontribusi_ruas.png`
+- `package_version.csv`
+- `sessionInfo_01.txt`
+- `sessionInfo_02.txt`
+- `sessionInfo_03.txt`
+- `sessionInfo_04.txt`
+
+---
+
+# 🔄 Workflow
+
+```text
+Data Volume Kendaraan
+          │
+          ▼
+ Import Data
+          │
+          ▼
+ Data Cleaning
+          │
+          ▼
+ Perhitungan VKT
+          │
+          ▼
+ Perhitungan Emisi Karbon
+          │
+          ▼
+ Analisis Statistik
+          │
+          ▼
+ Analisis Berdasarkan
+ Ruas Jalan &
+ Jenis Kendaraan
+          │
+          ▼
+ Visualisasi
+          │
+          ▼
+ Export Output
+          │
+          ▼
+ Dokumentasi
+ Reproducible Research
+```
+
+---
+
+# 🔁 Prinsip Reproducible Research
+
+Repository ini menerapkan prinsip **Reproducible Research**, yaitu:
+
+- Data mentah disimpan pada folder `data`.
+- Seluruh analisis dilakukan menggunakan script R.
+- Setiap tahapan analisis dipisahkan ke dalam notebook sesuai fungsi.
+- Seluruh output dihasilkan secara otomatis melalui script.
+- Informasi versi package dan lingkungan komputasi disimpan menggunakan `sessionInfo()`.
+- Analisis dapat direproduksi kembali menggunakan data dan script yang tersedia.
+
+---
+
+# 🚀 Cara Menjalankan
+
+1. Clone repository ini.
+
+2. Letakkan file **data_emisi.csv** ke dalam folder **data/**.
+
+3. Jalankan notebook secara berurutan:
+
+```
+01_import_data.ipynb
+
+↓
+
+02_perhitungan_emisi.ipynb
+
+↓
+
+03_analisis_visualisasi.ipynb
+
+↓
+
+04_export_output.ipynb
+```
+
+4. Seluruh hasil analisis akan tersimpan otomatis pada folder **output/**.
+
+---
+
+# 👨‍💻 Penulis
+
+**Revka Saputro**
+
+Program Studi Teknik Sipil dan Lingkungan
+
+Sekolah Pascasarjana
+
+Institut Pertanian Bogor (IPB University)
+
+---
+
+# 📚 Mata Kuliah
+
+**Metodologi Penelitian**
+
+---
+
+# 📄 Lisensi
+
+Repository ini dibuat untuk keperluan akademik sebagai tugas mata kuliah **Metodologi Penelitian**.
+
+Data dan script yang tersedia hanya digunakan untuk kepentingan pembelajaran, penelitian, dan implementasi konsep **Reproducible Research**.
